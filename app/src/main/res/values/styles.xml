@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="Style.FlexFrameAnimationPlayer.Button" parent="Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/example_default_button_text_size</item>
+    </style>
+</resources>

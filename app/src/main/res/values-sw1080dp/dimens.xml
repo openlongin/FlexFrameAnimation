@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="example_ffa_animation_render_width">1750dp</dimen>
+    <dimen name="example_ffa_animation_render_height">750dp</dimen>
+    <dimen name="example_ffa_animation2_render_width">900dp</dimen>
+    <dimen name="example_ffa_animation2_render_height">513dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_x">185dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_y">163dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_width">525dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_height">233dp</dimen>
+    <dimen name="example_control_panel_width">380dp</dimen>
+    <dimen name="example_control_panel_padding">15dp</dimen>
+    <dimen name="example_default_button_text_size">32sp</dimen>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 1750dp * 0.15 = 262.5dp -->
+    <dimen name="example_ffa_animation_render_width">262.5dp</dimen>
+    <!-- 750dp * 0.15 = 112.5dp -->
+    <dimen name="example_ffa_animation_render_height">112.5dp</dimen>
+    <dimen name="example_ffa_animation2_render_width">300dp</dimen>
+    <dimen name="example_ffa_animation2_render_height">171dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_x">61.67dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_y">54.33dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_width">175dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_wheel_height">77.67dp</dimen>
+    <dimen name="example_control_panel_width">126dp</dimen>
+    <dimen name="example_control_panel_padding">12dp</dimen>
+    <dimen name="example_default_button_text_size">16sp</dimen>
+</resources>

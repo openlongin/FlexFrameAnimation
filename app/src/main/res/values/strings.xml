@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">FlexFrameAnimationPlayer</string>
+    <string name="example_animation">Animation</string>
+    <string name="example_imageview2">ImageView2</string>
+    <string name="example_animation2">Animation2</string>
+
+    <string name="example_ffa_animation_start">Start</string>
+    <string name="example_ffa_animation_stop">Stop</string>
+
+    <string name="example_ffa_imageView2_image_resource1">大图1</string>
+    <string name="example_ffa_imageView2_image_resource2">大图2</string>
+    <string name="example_ffa_imageView2_scaleType_fitXY">fitXY</string>
+    <string name="example_ffa_imageView2_scaleType_fitStart">fitStart</string>
+    <string name="example_ffa_imageView2_scaleType_fitCenter">fitCenter</string>
+    <string name="example_ffa_imageView2_scaleType_fitEnd">fitEnd</string>
+    <string name="example_ffa_imageView2_scaleType_center">center</string>
+    <string name="example_ffa_imageView2_scaleType_centerCrop">centerCrop</string>
+    <string name="example_ffa_imageView2_scaleType_centerInside">centerInside</string>
+</resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <io.github.openlongin.ffa.player.ext.ImageView2
+            android:id="@+id/image_view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@raw/example_ffa_bg" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="@dimen/example_control_panel_width"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:padding="@dimen/example_control_panel_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/image_resource1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_image_resource1" />
+
+            <Button
+                android:id="@+id/image_resource2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_image_resource2" />
+
+            <Button
+                android:id="@+id/btn_scaleType_fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_fitXY" />
+
+            <Button
+                android:id="@+id/btn_scaleType_fitStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_fitStart" />
+
+            <Button
+                android:id="@+id/btn_scaleType_fitCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_fitCenter" />
+
+            <Button
+                android:id="@+id/btn_scaleType_fitEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_fitEnd" />
+
+            <Button
+                android:id="@+id/btn_scaleType_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_center" />
+
+            <Button
+                android:id="@+id/btn_scaleType_centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_centerCrop" />
+
+            <Button
+                android:id="@+id/btn_scaleType_centerInside"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_imageView2_scaleType_centerInside" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

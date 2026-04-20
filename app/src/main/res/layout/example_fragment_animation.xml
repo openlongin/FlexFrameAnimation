@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:fitsSystemWindows="true"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <io.github.openlongin.ffa.player.FlexFrameAnimationSurfaceView
+            android:id="@+id/ffa_view"
+            android:layout_width="@dimen/example_ffa_animation_render_width"
+            android:layout_height="@dimen/example_ffa_animation_render_height" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="@dimen/example_control_panel_width"
+        android:layout_height="match_parent"
+        android:padding="@dimen/example_control_panel_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/ffa_btn_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_start" />
+
+            <Button
+                android:id="@+id/ffa_btn_stop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_stop" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

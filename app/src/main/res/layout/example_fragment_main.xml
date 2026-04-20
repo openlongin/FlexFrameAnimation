@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <Button
+            android:id="@+id/example_animation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_animation" />
+
+        <Button
+            android:id="@+id/example_imageview2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_imageview2" />
+
+        <Button
+            android:id="@+id/example_animation2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_animation2" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>
