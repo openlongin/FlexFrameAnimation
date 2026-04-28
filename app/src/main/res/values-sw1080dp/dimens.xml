@@ -8,6 +8,10 @@
     <dimen name="example_ffa_animation2_render_car_wheel_y">163dp</dimen>
     <dimen name="example_ffa_animation2_render_car_wheel_width">525dp</dimen>
     <dimen name="example_ffa_animation2_render_car_wheel_height">233dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_battery_x">322.56dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_battery_y">241.5dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_battery_width">248dp</dimen>
+    <dimen name="example_ffa_animation2_render_car_battery_height">68dp</dimen>
     <dimen name="example_control_panel_width">380dp</dimen>
     <dimen name="example_control_panel_padding">15dp</dimen>
     <dimen name="example_default_button_text_size">32sp</dimen>

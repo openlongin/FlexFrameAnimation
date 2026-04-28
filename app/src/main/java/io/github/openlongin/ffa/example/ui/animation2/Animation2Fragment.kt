@@ -51,6 +51,21 @@ class Animation2Fragment : Fragment(R.layout.example_fragment_animation2) {
         mViewBinding.ffaBtnStop.setOnClickListener {
             mViewModel.stopAnimation()
         }
+        mViewBinding.ffaBtnBatteryPercent0.setOnClickListener {
+            mViewModel.setBatteryPercent(0f)
+        }
+        mViewBinding.ffaBtnBatteryPercent30.setOnClickListener {
+            mViewModel.setBatteryPercent(0.3f)
+        }
+        mViewBinding.ffaBtnBatteryPercent50.setOnClickListener {
+            mViewModel.setBatteryPercent(0.5f)
+        }
+        mViewBinding.ffaBtnBatteryPercent90.setOnClickListener {
+            mViewModel.setBatteryPercent(0.9f)
+        }
+        mViewBinding.ffaBtnBatteryPercent100.setOnClickListener {
+            mViewModel.setBatteryPercent(1f)
+        }
     }
 
     @OptIn(FlowPreview::class)

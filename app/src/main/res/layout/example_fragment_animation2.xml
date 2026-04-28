@@ -39,6 +39,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/example_ffa_animation_stop" />
+
+            <Button
+                android:id="@+id/ffa_btn_battery_percent_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_battery_percent_0" />
+
+            <Button
+                android:id="@+id/ffa_btn_battery_percent_30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_battery_percent_30" />
+
+            <Button
+                android:id="@+id/ffa_btn_battery_percent_50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_battery_percent_50" />
+
+            <Button
+                android:id="@+id/ffa_btn_battery_percent_90"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_battery_percent_90" />
+
+            <Button
+                android:id="@+id/ffa_btn_battery_percent_100"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/example_ffa_animation_battery_percent_100" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

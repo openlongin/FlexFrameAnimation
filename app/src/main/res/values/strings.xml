@@ -6,6 +6,11 @@
 
     <string name="example_ffa_animation_start">Start</string>
     <string name="example_ffa_animation_stop">Stop</string>
+    <string name="example_ffa_animation_battery_percent_0">电量0%</string>
+    <string name="example_ffa_animation_battery_percent_30">电量30%</string>
+    <string name="example_ffa_animation_battery_percent_50">电量50%</string>
+    <string name="example_ffa_animation_battery_percent_90">电量90%</string>
+    <string name="example_ffa_animation_battery_percent_100">电量100%</string>
 
     <string name="example_ffa_imageView2_image_resource1">大图1</string>
     <string name="example_ffa_imageView2_image_resource2">大图2</string>
