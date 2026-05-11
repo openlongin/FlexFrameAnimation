@@ -28,5 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/example_animation2" />
+
+        <Button
+            android:id="@+id/example_animation3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/example_animation3" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.core.widget.NestedScrollView>

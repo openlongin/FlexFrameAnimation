@@ -25,4 +25,8 @@
     <dimen name="example_control_panel_width">126dp</dimen>
     <dimen name="example_control_panel_padding">12dp</dimen>
     <dimen name="example_default_button_text_size">16sp</dimen>
+    <!-- 500dp / 2 = 250dp -->
+    <dimen name="example_ffa_animation3_render_width">250dp</dimen>
+    <!-- 256dp / 2 = 128dp -->
+    <dimen name="example_ffa_animation3_render_height">128dp</dimen>
 </resources>

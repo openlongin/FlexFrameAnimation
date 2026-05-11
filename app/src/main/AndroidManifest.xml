@@ -28,6 +28,9 @@
         <activity
             android:name="io.github.openlongin.ffa.example.ui.animation2.Animation2Activity"
             android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" />
+        <activity
+            android:name="io.github.openlongin.ffa.example.ui.animation3.Animation3Activity"
+            android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" />
     </application>
 
 </manifest>
