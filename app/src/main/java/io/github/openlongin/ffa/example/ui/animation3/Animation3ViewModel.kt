@@ -8,6 +8,7 @@ import io.github.openlongin.ffa.player.ffab.Ffab
 import io.github.openlongin.ffa.player.layer.FlexFrameLayer
 import io.github.openlongin.ffa.player.layer.FlexFrameLayerGroup
 import io.github.openlongin.ffa.player.util.LogUtil
+import io.github.openlongin.ffa.player.util.MeasureHelper
 import io.github.openlongin.ffa.player.util.objectTag
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -30,6 +31,10 @@ class Animation3ViewModel : ViewModel() {
     // 当前正在执行的动画
     val layer: MutableStateFlow<FlexFrameLayer?> = MutableStateFlow(null)
 
+    init {
+        animationIn()
+    }
+
     /**
      * 计算此时切换到进场动画的最佳 offset。如果返回 null 表示当前正在播放进场动画。
      */
@@ -40,39 +45,56 @@ class Animation3ViewModel : ViewModel() {
             return null
         }
 
+        // 播放一帧需要的时间，帧率 30fps
+        val durationPerFrame = 1000f / 30
+
         if (currentLayer != null && currentLayer == this.mLayerAnimationOut) {
             // 当前正在播放出场动画
-            val uptimeRunning = (currentLayer.playState?.uptimeRunning() ?: 0L).coerceAtLeast(0L)
-
-            // 播放一帧需要的时间
-            val durationPerFrame = 1000f / 30
-
-            // 计算出场动画的此时刻 与 入场动画的哪一个时刻的内容是相同的
-            val virtualIndex = (uptimeRunning / durationPerFrame).toInt()
-
-            // 计算 virtualIndex 这一帧实际对应的是出场动画的哪一帧
             // 出场动画由三部分组成，总帧数 150 = in 30 + loop 60 + out 60，其中 loop 只播放一次
-            var outFrameIndex = 149
-            if (virtualIndex <= 149) {
-                outFrameIndex = virtualIndex % 150
-            }
+            val layer = currentLayer as FlexFrameLayerGroup
+            val context = AppContext.getContext()
+            val measureResult = MeasureHelper.measureLayer(context, layer)
 
-            // 计算出场动画的 outFrameIndex 对应入场动画的哪一帧
-            // 入场动画由三部分组成，总帧数 150 = out 60 + in 30 + loop 60, 其中 loop 无限循环
-            val matchInFrameIndex = (outFrameIndex + 60) % 150
-            val bestOffset = matchInFrameIndex * durationPerFrame
+            val frameIndexToDrawOfAnimIn = measureResult.getFrameIndexToDraw(layer.children[0])
+            val frameIndexToDrawOfAnimLoop = measureResult.getFrameIndexToDraw(layer.children[1])
+            val frameIndexToDrawOfAnimOut = measureResult.getFrameIndexToDraw(layer.children[2])
+
+            // 进场动画由三部分组成，总帧数 150 = out 60 + in 30 + loop 60, 其中 loop 无限循环
+            var bestOffset: Float
+
+            if (frameIndexToDrawOfAnimIn != null && frameIndexToDrawOfAnimIn >= 0) {
+                // 正在播放 in 30 帧
+                // bestOffset = out 60 + in frameIndexToDrawOfAnimIn
+                bestOffset = (60 + frameIndexToDrawOfAnimIn) * durationPerFrame
+            } else if (frameIndexToDrawOfAnimLoop != null && frameIndexToDrawOfAnimLoop >= 0) {
+                // 正在播放 loop 60 帧
+                // bestOffset = out 60 + in 30 + loop frameIndexToDrawOfAnimLoop
+                bestOffset = (60 + 30 + frameIndexToDrawOfAnimLoop) * durationPerFrame
+            } else if (frameIndexToDrawOfAnimOut != null && frameIndexToDrawOfAnimOut >= 0) {
+                // 正在播放 out 60 帧
+                // bestOffset = out frameIndexToDrawOfAnimOut
+                bestOffset = frameIndexToDrawOfAnimOut * durationPerFrame
+            } else {
+                // 动画没有开始
+                // bestOffset = out 60
+                bestOffset = 60 * durationPerFrame
+            }
 
             LogUtil.d {
-                "findBestAnimationInOffset uptimeRunning:$uptimeRunning, durationPerFrame:$durationPerFrame" +
+                "findBestAnimationInOffset frameIndexToDrawOfAnimIn:$frameIndexToDrawOfAnimIn," +
                         //
-                        " virtualIndex:$virtualIndex, outFrameIndex:$outFrameIndex," +
+                        " frameIndexToDrawOfAnimLoop:$frameIndexToDrawOfAnimLoop," +
                         //
-                        " matchInFrameIndex:$matchInFrameIndex, bestOffset:$bestOffset"
+                        " frameIndexToDrawOfAnimOut:$frameIndexToDrawOfAnimOut," +
+                        //
+                        " durationPerFrame:$durationPerFrame, bestOffset:$bestOffset"
             }
+
             return bestOffset.toLong()
         }
 
-        return 0L
+        // bestOffset = out 60
+        return (60 * durationPerFrame).toLong()
     }
 
     /**
@@ -195,39 +217,56 @@ class Animation3ViewModel : ViewModel() {
             return null
         }
 
+        // 播放一帧需要的时间，帧率 30fps
+        val durationPerFrame = 1000f / 30
+
         if (currentLayer != null && currentLayer == this.mLayerAnimationIn) {
             // 当前正在播放进场动画
-            val uptimeRunning = (currentLayer.playState?.uptimeRunning() ?: 0L).coerceAtLeast(0L)
+            // 进场动画由三部分组成，总帧数 150 = out 60 + in 30 + loop 60, 其中 loop 无限循环
+            val layer = currentLayer as FlexFrameLayerGroup
+            val context = AppContext.getContext()
+            val measureResult = MeasureHelper.measureLayer(context, layer)
 
-            // 播放一帧需要的时间
-            val durationPerFrame = 1000f / 30
+            val frameIndexToDrawOfAnimOut = measureResult.getFrameIndexToDraw(layer.children[0])
+            val frameIndexToDrawOfAnimIn = measureResult.getFrameIndexToDraw(layer.children[1])
+            val frameIndexToDrawOfAnimLoop = measureResult.getFrameIndexToDraw(layer.children[2])
 
-            // 计算进场动画的此时刻 与 出场动画的哪一个时刻的内容是相同的
-            val virtualIndex = (uptimeRunning / durationPerFrame).toInt()
 
-            // 计算 virtualIndex 这一帧实际对应的是进场动画的哪一帧
-            // 入场动画由三部分组成，总帧数 150 = out 60 + in 30 + loop 60, 其中 loop 无限循环
-            var inFrameIndex = 149
-            if (virtualIndex <= 149) {
-                inFrameIndex = virtualIndex % 150
+            // 出场动画由三部分组成，总帧数 150 = in 30 + loop 60 + out 60，其中 loop 只播放一次
+            var bestOffset: Float
+
+            if (frameIndexToDrawOfAnimOut != null && frameIndexToDrawOfAnimOut >= 0) {
+                // 正在播放 out 60 帧
+                // bestOffset = in 30 + loop 60 + out frameIndexToDrawOfAnimOut
+                bestOffset = (30 + 60 + frameIndexToDrawOfAnimOut) * durationPerFrame
+            } else if (frameIndexToDrawOfAnimIn != null && frameIndexToDrawOfAnimIn >= 0) {
+                // 正在播放 in 30 帧
+                // bestOffset = in frameIndexToDrawOfAnimIn
+                bestOffset = frameIndexToDrawOfAnimIn * durationPerFrame
+            } else if (frameIndexToDrawOfAnimLoop != null && frameIndexToDrawOfAnimLoop >= 0) {
+                // 正在播放 loop 60 帧
+                // bestOffset = in 30 + loop frameIndexToDrawOfAnimLoop
+                bestOffset = (30 + frameIndexToDrawOfAnimLoop) * durationPerFrame
+            } else {
+                // 动画没有开始
+                // bestOffset = in 30 + loop 60
+                bestOffset = (30 + 60) * durationPerFrame
             }
 
-            // 计算进场动画的 outFrameIndex 对应出场动画的哪一帧
-            // 入场动画由三部分组成，总帧数 150 = out 60 + in 30 + loop 60, 其中 loop 无限循环
-            val matchOutFrameIndex = (inFrameIndex + 90) % 150
-            val bestOffset = matchOutFrameIndex * durationPerFrame
-
             LogUtil.d {
-                "findBestAnimationOutOffset uptimeRunning:$uptimeRunning, durationPerFrame:$durationPerFrame" +
+                "findBestAnimationOutOffset frameIndexToDrawOfAnimOut:$frameIndexToDrawOfAnimOut," +
                         //
-                        " virtualIndex:$virtualIndex, inFrameIndex:$inFrameIndex," +
+                        " frameIndexToDrawOfAnimIn:$frameIndexToDrawOfAnimIn," +
                         //
-                        " matchOutFrameIndex:$matchOutFrameIndex, bestOffset:$bestOffset"
+                        " frameIndexToDrawOfAnimLoop:$frameIndexToDrawOfAnimLoop," +
+                        //
+                        " durationPerFrame:$durationPerFrame, bestOffset:$bestOffset"
             }
             return bestOffset.toLong()
         }
 
-        return 0L
+        // bestOffset = in 30 + loop 60
+        return ((30 + 60) * durationPerFrame).toLong()
     }
 
     /**
@@ -322,7 +361,6 @@ class Animation3ViewModel : ViewModel() {
             this.children.add(layerIn)
             this.children.add(layerLoop)
             this.children.add(layerOut)
-            // 在动画组上配置 PlayState, 可以同时作用于 layerFirst 与 layerSecond
             this.playState = PlayState.Builder().apply {
                 this.setUptimeRunningOffset(uptimeRunningOffset)
                 this.start()
